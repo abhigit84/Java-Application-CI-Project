@@ -1,5 +1,5 @@
 steps to follow:-
-This is actual walmart Project.
+
 stages of CI covered:
 
 Declarative: Checkout SCM,Git Checkout,Unit Test maven,Integration Test maven,Static code analysis:Sonarqube,Quality Gate Status Check : Sonarqube,Maven Build : maven,Docker Image Build,Docker Image Scan: trivy,Docker Image Push : DockerHub	Docker Image Cleanup : DockerHub

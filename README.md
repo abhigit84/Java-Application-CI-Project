@@ -55,7 +55,7 @@ this is master url
 put password-shown on screen
 install all suggested plugins
 all admin(username,password)
-abhinoi84@gmail.com
+email
 jenkins url-http://3.80.131.138:8080/
 Note for jenkins login-all admin(username,password)
 

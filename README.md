@@ -60,7 +60,7 @@ jenkins url-http://3.80.131.138:8080/
 Note for jenkins login-all admin(username,password)
 
 3)new-name-pipeline project
-pipeline -definition-pipeline script from scm-SCM-git-repo url(https://github.com/praveen1994dec/Java_app_3.0.git or https://github.com/abhigit84/Java_app_3.0.git)-branch specifier(*/main)
+pipeline -definition-pipeline script from scm-SCM-git-repo url(https://github.com/abhigit84/Java_app_3.0.git)-branch specifier(*/main)
 
 Note:-whenever any pipeline changes select that pipeline and click configure.
 Also this is picking Jenkinsfile(only with this name will be picked Jenkinsfile1 will be ignored) from Github and using it in Jenkins pipeline(delarative) unline mr devops CICD Project in which he wrote scripts inside jenkins pipeline box. 

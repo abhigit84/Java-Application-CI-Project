@@ -13,10 +13,10 @@ without key proceed
 
 Tool Installation scripts Repository:https://github.com/abhigit84/tools_installation_scripts.git
 
-Repository on which CICD done:
+Repository on which CI done:
 
 
-https://github.com/abhigit84/Java_app_3.0.git
+https://github.com/abhigit84/Java-Application-CI-Project.git
 
 
 

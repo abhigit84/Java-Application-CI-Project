@@ -150,7 +150,7 @@ id-sonarqube-api
 ADD.
 
 u can now see in server authentication token added that is -sonarqube-api-select it and save.
-
+this sonarqube-api name is used in Jenkinsfile code while calling sonarcube quality check and qualitygate functions or groovy scripts .
 
 b)add docker hub credential id
 

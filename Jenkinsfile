@@ -2,7 +2,8 @@
 
 pipeline{
 
-    agent any
+    // agent any
+    agent
 
     parameters{
 

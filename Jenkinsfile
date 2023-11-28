@@ -2,7 +2,7 @@
 
 pipeline{
 
-  agent any
+    agent any
     //agent { label 'Demo' }
 
     parameters{
@@ -20,7 +20,7 @@ pipeline{
             steps{
             gitCheckout(
                 branch: "main",
-                url: "https://github.com/abhigit84/Java-Application-CI-Project.git"
+                url: "https://github.com/abhigit84/Java_app_3.0.git"
             )
             }
         }
@@ -70,6 +70,16 @@ pipeline{
                script{
                    
                    mvnBuild()
+               }
+            }
+        }
+
+         stage('Push Jar to Jfrog : python'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+                   
+                   jarPush()
                }
             }
         }

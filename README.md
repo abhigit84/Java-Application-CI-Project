@@ -171,6 +171,67 @@ dockerhub and sonarcube integrated..rest all tools with run only by installation
 14)Now click on Jenkins job-build with parameters-dockerhubuser-should be your dockeruser id(put ur dockerhubid and not others as build will fail) as parameters its picking from Jenkinsfile of github where other user id written.
 Click on Build now.
 
+
+15)Integration of Jfrog Upload in CI Jenkins Pipeline.Jfrog installation should be on same ec2 instance as earlier tools 
+Refer the below steps:-
+
+1)Added in shared library vars folder:jarPush.groovy file.(dont call like ./jfrog.py as given in singam pdf)
+
+code:jarPush.groovy
+
+def call(){
+    sh 'python3 jfrog.py'
+}
+
+2)Added In Jenkinsfile this stage below mvn build stage for calling jarPush.groovy
+
+ stage('Push Jar to Jfrog : python'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+                   
+                   jarPush()
+               }
+            }
+        }
+
+3)jfrog.py added in Code repo folder.(Please dont put in shared lib var folder as it will give error python file not found,also dont use any main() function to call jfrogUpload() function,Indentation in python code very important check in vs code)
+
+.....................................................jfrog.py...................................................................................
+#!/usr/bin/env python3
+#pip3 install requests
+#batch5 is pipeline name in jenkins
+import requests
+#import subprocess
+
+def jfrogUpload() :
+    url = 'http://3.95.135.158:8082/artifactory/example-repo-local/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar'
+    file_path = '/var/lib/jenkins/workspace/batch5/target/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar'
+    username = 'admin'
+    password = 'put jfrog login password'
+
+    with open(file_path, 'rb') as file:
+        response = requests.put(url, auth=(username, password), data=file)  
+        
+        if response.status_code == 201:
+          print("\nPut request was succesfull")
+        else:
+            print("PUT request failed with status code (response.status_code)")
+            print("Response content:")
+            print(response.txt)
+
+
+jfrogUpload()
+
+.................................................................end...................................................................................
+
+Install jfrog on same server.(first time jfrog u put manually after cloning git and running mvn install so jar and whole repo was inside /home/ubuntu..if u integrate in CI pipeline
+jenkins builds and keeps jar in /var/lib/jenkins/workspace/pipelinename/target folder ...there is no code repo on ec2 server /home/ubuntu)
+subprocess will be used if mvn commands used inside python or lets say shell scripts used..in my case no need.
+
+Python3 already there on ubuntu but you can install if not there by-
+sudo apt install python3-pip
+
 Notes:
 Click on workspaces below console output-here ur code is there-u can see target folder-inside this u can see application jar which is built by maven.
 this jar name coming from pom.xml 
